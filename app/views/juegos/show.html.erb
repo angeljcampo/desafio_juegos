@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @juego.name %>
+</p>
+
+<p>
+  <strong>Rules:</strong>
+  <%= link_to "Download rules", rails_blob_path(@juego.rules, disposition: "attachment")%>
+</p>
+
+<p>
+  <strong>Boardphoto:</strong>
+  <%= image_tag @juego.boardphoto.variant(resize: "100x100", colorspace:"gray") %>
+</p>
+
+<p>
+  <strong>Piecephoto:</strong>
+  <% @juego.piecephotos.each do |img| %>
+          <td><%= image_tag img.variant(resize: "100x100", type: :grayscale) %><br>
+        <%= link_to "Download", rails_blob_path(img, disposition: "attachment")%></td>
+        <% end %>
+</p>
+
+<%= link_to 'Edit', edit_juego_path(@juego) %> |
+<%= link_to 'Back', juegos_path %>
